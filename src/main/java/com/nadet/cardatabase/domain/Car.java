@@ -1,12 +1,16 @@
 package com.nadet.cardatabase.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+//import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+//import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -20,7 +24,7 @@ public class Car {
 	public Car() {}
 	
 	public Car(String brand, String model, String color, 
-			String registerNumber, int buildYear, int price, Owner owner) {
+			String registerNumber, int buildYear, int price, Set<Owner> owners) {
 		super();
 		this.brand = brand;
 		this.model = model;
@@ -28,7 +32,7 @@ public class Car {
 		this.registerNumber = registerNumber;
 		this.buildYear = buildYear;
 		this.price = price;
-		this.owner = owner;
+		this.owners = owners;
 	}
 	
 	public long getId() {
@@ -88,16 +92,19 @@ public class Car {
 	}
 	
 	//Many to One relationship
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="owner")
-	private Owner owner;
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name="owner")
+	@ManyToMany(mappedBy = "cars")
 	
-	public Owner getOwner() {
-	return owner;
+	//private Owner owner;
+	private Set<Owner> owners = new HashSet<Owner>();
+	
+	public Set<Owner> getOwner() {
+	return owners;
 	}
 	
-	public void setOwner(Owner owner) {
-		this.owner = owner;
+	public void setOwner(Set<Owner> owners) {
+		this.owners = owners;
 	}
 
 }

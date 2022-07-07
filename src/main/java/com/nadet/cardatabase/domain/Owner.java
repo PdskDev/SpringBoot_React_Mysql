@@ -1,13 +1,18 @@
 package com.nadet.cardatabase.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+//import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Owner {
@@ -49,14 +54,20 @@ public class Owner {
 		this.lastname = lastname;
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-	private List<Car> cars;
+	//@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(
+	name="car_owner", 
+	joinColumns = {@JoinColumn(name="owernid")},
+	inverseJoinColumns = {@JoinColumn(name="id")})
 	
-	public List<Car> getCars() {
+	private Set<Car> cars = new HashSet<Car>();
+	
+	public Set<Car> getCars() {
 		return cars;
 	}
 	
-	public void setCars(List<Car> cars) {
+	public void setCars(Set<Car> cars) {
 		this.cars = cars;
 	}
 }
