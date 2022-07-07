@@ -24,7 +24,7 @@ public class Car {
 	public Car() {}
 	
 	public Car(String brand, String model, String color, 
-			String registerNumber, int buildYear, int price, Set<Owner> owners) {
+			String registerNumber, int buildYear, int price) {
 		super();
 		this.brand = brand;
 		this.model = model;
@@ -32,7 +32,7 @@ public class Car {
 		this.registerNumber = registerNumber;
 		this.buildYear = buildYear;
 		this.price = price;
-		this.owners = owners;
+		
 	}
 	
 	public long getId() {

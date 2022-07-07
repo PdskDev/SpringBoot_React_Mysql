@@ -38,11 +38,11 @@ public class CardatabaseApplication implements CommandLineRunner {
 		Owner owner2 = new Owner("Societe", "PDSK");
 		orepository.saveAll(Arrays.asList(owner1, owner2));
 				
-		repository.save(new Car("Ford", "Mustang", "Red", "ADF-1221", 2021, 59000, owner1));
-		repository.save(new Car("Nissan", "Leaf", "White", "SSJ-3002", 2019, 29000, owner2));
-		repository.save(new Car("Toyota", "Prius", "Silver", "KKO-0212", 2020, 39000, owner2));
-		repository.save(new Car("Peugeot", "508", "Black", "GGO-0520", 2021, 55000, owner1));
-		repository.save(new Car("Renault", "Talisman", "Green", "PAR-1550", 2021, 65000, owner2));
+		repository.save(new Car("Ford", "Mustang", "Red", "ADF-1221", 2021, 59000));
+		repository.save(new Car("Nissan", "Leaf", "White", "SSJ-3002", 2019, 29000));
+		repository.save(new Car("Toyota", "Prius", "Silver", "KKO-0212", 2020, 39000));
+		repository.save(new Car("Peugeot", "508", "Black", "GGO-0520", 2021, 55000));
+		repository.save(new Car("Renault", "Talisman", "Green", "PAR-1550", 2021, 65000));
 		
 		//Fetch all cars and log to console
 		for (Car car: repository.findAll()) {
